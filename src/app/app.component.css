@@ -1,5 +1,5 @@
 .principal{
-    margin-top: 7em;
+    margin-top: 5em;
     padding-bottom: 1em;
 }
 
@@ -12,11 +12,11 @@ body{
 }
 
 .img-aling-center{
-    padding-left: 10em;
+    padding-left: 20em;
     padding-top: 5em;
     
 }
-.img .img-aling-center {
-    height: 30% !important;
-    width: 54%;
+.img-logo-frond{
+    height: 86% !important;
+    width: 55% !important;
 }

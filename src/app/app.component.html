@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-5 img-aling-center"  >
-            <img src="/assets/FOTO-WEB-liverpool-logo-.png" alt="" >
+            <img src="/assets/FOTO-WEB-liverpool-logo-.png" alt=""  class="img-logo-frond">
         </div>
         <div class="col-sm-12 principal">
             <label for="busqueda">Busqueda</label>
@@ -28,13 +28,14 @@
                 <pagination-controls (pageChange)="p = $event" 
                 previousLabel="Atrás"
                 nextLabel="Siguiente"
+                *ngIf="resultado" 
                 ></pagination-controls>
         </div>
     </div>
     <br>
 </div>
 <div class="container">
-<div class="row" *ngIf="resultado">
+<div class="row" *ngIf="resultado ">
     <div *ngFor="let item of resultado.contents[0].mainContent[3].contents[0].records | paginate: { itemsPerPage: 10, currentPage: p }" class=" col-sm-6 col-md-4 col-lg-4">
         <div *ngFor="let record of item.records" class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{ record.largeImage}}" alt="Card image cap">
