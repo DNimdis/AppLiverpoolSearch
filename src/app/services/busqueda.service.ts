@@ -17,10 +17,10 @@ export class BusquedaService {
   }
 
   serarchProduct(busqueda: Busqueda){
-    if(busqueda.parametro){
+   
       this.storeOnLocalStorage( busqueda.parametro);
-    }
-    return this._http.get(ENDPOIN+ busqueda.parametro +"&d3106047a194921c01969dfdec083925=json");
+    
+    return this._http.get(ENDPOIN+busqueda.parametro +"&d3106047a194921c01969dfdec083925=json");
   }
 
   public storeOnLocalStorage(busqueda: string): void {
@@ -41,14 +41,14 @@ export class BusquedaService {
           currentTodoList.push({
             busqueda: busqueda
           });
+          this.storage.set(STORAGE_KEY, currentTodoList);
         }
 
-        this.storage.set(STORAGE_KEY, currentTodoList);
         
         //console.log(this.storage.get(STORAGE_KEY) || 'LocaL storage is empty');
     }
 
-    getInstorioBusqueda(){
+    getHistorioBusqueda(){
       return this.storage
       .get(STORAGE_KEY) || 'LocaL storage is empty';
     }

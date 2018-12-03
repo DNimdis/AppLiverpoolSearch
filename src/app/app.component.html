@@ -4,22 +4,22 @@
             <img src="/assets/FOTO-WEB-liverpool-logo-.png" alt=""  class="img-logo-frond">
         </div>
         <div class="col-sm-12 principal">
-            <label for="busqueda">Busqueda</label>
+            <label for="busquedas">Busqueda</label>
             <input type="text" id="textBuscar" class="form-control" name ="textBuscar" [(ngModel)]="busqueda.parametro" >
             <small id="textBuscar" class="form-text text-muted">
-                Ingresa tu articulo a consultar en la tienda
+                Ingresa tu articulo a consultar en la tienda                
             </small>
         </div>
         <div class="col-sm-5">
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Historial de busqueda
-                    </button>
-                    
-                    <div *ngFor="let item of historial" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" (click)="historia(item.busqueda)">{{item.busqueda}}</a>
+                    </button>                    
+                    <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a *ngFor="let item of historial" class="dropdown-item" (click)="historia(item.busqueda)" >{{item.busqueda}}</a>
+                       
                     </div>
-                </div>
+                </div>              
         </div>
         <div class="col-sm-2">
                 <button class="btn btn-primary" (click)="buscar()"> Buscar</button>
@@ -35,7 +35,7 @@
     <br>
 </div>
 <div class="container">
-<div class="row" *ngIf="resultado ">
+<div class="row" *ngIf="resultado.contents != undefined"  >
     <div *ngFor="let item of resultado.contents[0].mainContent[3].contents[0].records | paginate: { itemsPerPage: 10, currentPage: p }" class=" col-sm-6 col-md-4 col-lg-4">
         <div *ngFor="let record of item.records" class="card" style="width: 18rem;">
                 <img class="card-img-top" src="{{ record.largeImage}}" alt="Card image cap">
@@ -44,10 +44,9 @@
                     <p class="card-text">{{ record.maximumListPrice | moneda }}</p>
                     <a href="https://www.liverpool.com.mx/tienda/?s={{record.productDisplayName}}" class="btn btn-primary" target="_blank">Ver en la tienda</a>
                 </div>
-            </div>
-            
+            </div>            
         </div>
-    </div>
+ </div>
     <pagination-controls *ngIf="resultado.contents[0].mainContent[3].contents[0].records" (pageChange)="p = $event" 
     previousLabel="Atrás"
     nextLabel="Siguiente"

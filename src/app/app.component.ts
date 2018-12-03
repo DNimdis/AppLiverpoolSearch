@@ -14,19 +14,21 @@ export class AppComponent {
   title = 'AppLiverpoolSearch';
   public resultado: any;
   public historial: any;
-  public busqueda = new Busqueda();
+  public busqueda: any;
   constructor( private busquedaService:BusquedaService){
+    this.busqueda = new Busqueda();
 
   }
-  ngOnInit(): void {
-    this.getHistorial();
+  ngOnInit(): void {    
+    this.getHistorial();  
   }
 
   buscar(){
     this.busquedaService.serarchProduct(this.busqueda).subscribe(
       (resultado: any)=>{
         this.resultado = resultado;
-        this.getHistorial();
+        console.log(this.resultado.contents);
+        
       },
       (error)=>{
         console.log(error);
@@ -35,12 +37,9 @@ export class AppComponent {
   }
 
   getHistorial(){
-    if(this.busquedaService.getInstorioBusqueda()){
-      this.historial= this.busquedaService.getInstorioBusqueda()
-    }else{
-      this.historial =  [{ busqueda: "S/n"}];
-    }
-    
+    if(this.busquedaService.getHistorioBusqueda()){
+      this.historial= this.busquedaService.getHistorioBusqueda();                 
+    }    
   }
 
   historia(dato: string){
