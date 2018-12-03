@@ -1,0 +1,22 @@
+.principal{
+    margin-top: 7em;
+    padding-bottom: 1em;
+}
+
+body{
+    background-color: #F2F2F2;
+}
+
+.card {
+    margin-bottom: 1em;
+}
+
+.img-aling-center{
+    padding-left: 10em;
+    padding-top: 5em;
+    
+}
+.img .img-aling-center {
+    height: 30% !important;
+    width: 54%;
+}

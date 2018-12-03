@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-5 img-aling-center"  >
+            <img src="/assets/FOTO-WEB-liverpool-logo-.png" alt="" >
+        </div>
+        <div class="col-sm-12 principal">
+            <label for="busqueda">Busqueda</label>
+            <input type="text" id="textBuscar" class="form-control" name ="textBuscar" [(ngModel)]="busqueda.parametro" >
+            <small id="textBuscar" class="form-text text-muted">
+                Ingresa tu articulo a consultar en la tienda
+            </small>
+        </div>
+        <div class="col-sm-5">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Historial de busqueda
+                    </button>
+                    
+                    <div *ngFor="let item of historial" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" (click)="historia(item.busqueda)">{{item.busqueda}}</a>
+                    </div>
+                </div>
+        </div>
+        <div class="col-sm-2">
+                <button class="btn btn-primary" (click)="buscar()"> Buscar</button>
+        </div>
+        <div class="col-sm-5">
+                <pagination-controls (pageChange)="p = $event" 
+                previousLabel="Atrás"
+                nextLabel="Siguiente"
+                ></pagination-controls>
+        </div>
+    </div>
+    <br>
+</div>
+<div class="container">
+<div class="row" *ngIf="resultado">
+    <div *ngFor="let item of resultado.contents[0].mainContent[3].contents[0].records | paginate: { itemsPerPage: 10, currentPage: p }" class=" col-sm-6 col-md-4 col-lg-4">
+        <div *ngFor="let record of item.records" class="card" style="width: 18rem;">
+                <img class="card-img-top" src="{{ record.largeImage}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ record.productDisplayName }}</h5>
+                    <p class="card-text">{{ record.maximumListPrice | moneda }}</p>
+                    <a href="https://www.liverpool.com.mx/tienda/?s={{record.productDisplayName}}" class="btn btn-primary" target="_blank">Ver en la tienda</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <pagination-controls *ngIf="resultado.contents[0].mainContent[3].contents[0].records" (pageChange)="p = $event" 
+    previousLabel="Atrás"
+    nextLabel="Siguiente"
+    ></pagination-controls>
+</div>
